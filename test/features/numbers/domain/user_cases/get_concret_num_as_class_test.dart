@@ -5,21 +5,25 @@ import 'package:numbers/features/numbers/domain/entities/numbers_model.dart';
 import 'package:numbers/features/numbers/domain/repo_contract/numbers_repo_contract.dart';
 import 'package:numbers/features/numbers/domain/use_cases/get_concret_num_as_class.dart';
 
-// this what test created for
+/// THREE: create class for mocking the repo contract
+/// also this is the Implementation class as test
 class MockNumberRepoContract extends Mock implements NumberRepoContract {}
 
 void main() {
-  // this the use case for one of the functions as class
+  /// FOUR: the use-case that created in step two
+  /// is initialized here to can run and test
+  /// the getNumbers with it
   GetConcreteNumberAsClass useCase;
 
-  /// 1- all the test is for this repo contract
-  MockNumberRepoContract mocNumberRepoContract;
+  /// FIVE: implementation class, but in testing-way not production-way
+  MockNumberRepoContract mockNumberRepoContract;
 
   setUp(() {
-    mocNumberRepoContract = MockNumberRepoContract();
-    useCase = GetConcreteNumberAsClass(mocNumberRepoContract);
+    mockNumberRepoContract = MockNumberRepoContract();
+    useCase = GetConcreteNumberAsClass(mockNumberRepoContract);
   });
 
+  /// SIX: Testing data similar for the real ones
   final tNumber = 1;
   final tNumberModel = NumbersModel(number: 1, text: 'testing with Number One');
 
@@ -27,18 +31,22 @@ void main() {
     'should get Number From Repository',
     () async {
       // "On the fly" implementation of the Repository using the Mockito package.
-      // When getConcreteNumberTrivia is called with any argument, always answer with
+      // When getConcreteNumberAsMethod is called with any argument, always answer with
       // the Right "side" of Either containing a test NumberTrivia object.
-      when(mocNumberRepoContract.getConcreteNumberAsMethod(any))
+      /// the Right(tNumberModel) : is the return data
+      when(mockNumberRepoContract.getConcreteNumberAsMethod(any))
           .thenAnswer((_) async => Right(tNumberModel));
       // The "act" phase of the test. Call the not-yet-existent method.
+      /// this method return matches the above statement return
       final result = await useCase.execute(number: tNumber);
       // UseCase should simply return whatever was returned from the Repository
+      /// comparing the result getConcreteNumberAsMethod with any number here
+      /// with the result of the same method inside execute of the use case
       expect(result, Right(tNumberModel));
       // Verify that the method has been called on the Repository
-      verify(mocNumberRepoContract.getConcreteNumberAsMethod(tNumber));
+      verify(mockNumberRepoContract.getConcreteNumberAsMethod(tNumber));
       // Only the above method should be called and nothing more.
-      verifyNoMoreInteractions(mocNumberRepoContract);
+      verifyNoMoreInteractions(mockNumberRepoContract);
     },
   );
 }
