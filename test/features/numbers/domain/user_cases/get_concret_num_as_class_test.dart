@@ -28,7 +28,7 @@ void main() {
   final tNumberModel = NumbersModel(number: 1, text: 'testing with Number One');
 
   test(
-    'should get Number From Repository',
+    'should get trivia for the  Number From Repository',
     () async {
       // "On the fly" implementation of the Repository using the Mockito package.
       // When getConcreteNumberAsMethod is called with any argument, always answer with
