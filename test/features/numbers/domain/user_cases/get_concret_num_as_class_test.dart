@@ -42,7 +42,7 @@ void main() {
       /// act
       // The "act" phase of the test. Call the not-yet-existent method.
       /// this method return matches the above statement return
-      final result = await useCase(number: tNumber);
+      final result = await useCase(Params(number: tNumberModel.number));
 
       /// assert
       // UseCase should simply return whatever was returned from the Repository
