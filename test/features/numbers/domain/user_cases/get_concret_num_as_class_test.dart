@@ -33,12 +33,18 @@ void main() {
       // "On the fly" implementation of the Repository using the Mockito package.
       // When getConcreteNumberAsMethod is called with any argument, always answer with
       // the Right "side" of Either containing a test NumberTrivia object.
-      /// the Right(tNumberModel) : is the return data
+      /// arrange
+      /// this like setting a condition to this method calling
+      /// to return this type all  the time
       when(mockNumberRepoContract.getConcreteNumberAsMethod(any))
           .thenAnswer((_) async => Right(tNumberModel));
+
+      /// act
       // The "act" phase of the test. Call the not-yet-existent method.
       /// this method return matches the above statement return
       final result = await useCase.execute(number: tNumber);
+
+      /// assert
       // UseCase should simply return whatever was returned from the Repository
       /// comparing the result getConcreteNumberAsMethod with any number here
       /// with the result of the same method inside execute of the use case
