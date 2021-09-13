@@ -12,7 +12,7 @@ class GetConcreteNumberAsClass {
 
   GetConcreteNumberAsClass(this.repository);
 
-  Future<Either<Failure, NumbersModel>> execute({
+  Future<Either<Failure, NumbersModel>> call({
     @required int number,
   }) async {
     return await repository.getConcreteNumberAsMethod(number);
