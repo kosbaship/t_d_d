@@ -14,3 +14,13 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+SMS 
+
+[user]
+	name = Mohamed M. Kosba
+	email = mohamed.kobsa96@gmail.com
+	username = kosbaship
+  
+[github]
+	user = kosbaship
+	token = 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
